@@ -77,5 +77,13 @@ mask = imfill(mask,'holes');
 cq = bwconncomp(a, 8);
 numPixels =cellfun(@numel,cq.PixelIdxList);
 
+count =0;
+for i=1:cq.NumObjects
+    if(numPixels(i)>1000)count=count+1;
+    end
+end
+%count contains number of components.No idea how to display it. Use command
+%prompt
+
 whatever=(bw>0.5);
 %figure,imshow(whatever);title('roi');
