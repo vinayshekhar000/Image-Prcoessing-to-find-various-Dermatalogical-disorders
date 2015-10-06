@@ -7,13 +7,13 @@ figure
 surf(double(background(1:8:end,1:8:end))),zlim([0 255]);
 set(gca,'ydir','reverse');
 I2 = a - background;
-%imshow(I2);
+imshow(I2);
 I3 = imadjust(I2);
 imshow(I3);
 level = graythresh(I3);
 bw = im2bw(I3,level);
 bw = bwareaopen(bw, 50);
-%imshow(bw);
+imshow(bw);
 cc = bwconncomp(bw, 4);
 cc.NumObjects;
 C=double(a);
@@ -58,7 +58,7 @@ for i=1:size(C,1)-2
      
     end
 end
-%figure,imshow(a); title('Sobel gradient');
+figure,imshow(a); title('Sobel gradient');
 
 %threshold value
 Thresh=100;
@@ -66,14 +66,14 @@ a=max(a,Thresh);
 a(a==round(Thresh))=0;
 
 a=uint8(a);
-%figure,imshow(~a);title('Edge detected Image');
+figure,imshow(~a);title('Edge detected Image');
 
 cd = bwconncomp(a, 4);
 cd.NumObjects;
 
 mask = a>100;
 mask = imfill(mask,'holes');
-%figure,imshow(mask);title('Mask');
+figure,imshow(mask);title('Mask');
 cq = bwconncomp(a, 8);
 numPixels =cellfun(@numel,cq.PixelIdxList);
 
@@ -87,3 +87,9 @@ end
 
 whatever=(bw>0.5);
 %figure,imshow(whatever);title('roi');
+
+imageforrgb=A;
+ R = imageforrgb(:,:,1);
+ G = imageforrgb(:,:,2);
+ B = imageforrgb(:,:,3);
+ X=mean(mean(imageforrgb))

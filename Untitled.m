@@ -1,8 +1,8 @@
 
-a=imread('C:\Users\Kumar BN\Desktop\Image Processing\test.png')
-b=rgb2gray(a)
-c=im2bw(b,0.5)
-A= imsharpen(b)
+a=imread('C:\Users\Sujay\Downloads\test1.jpg');
+b=rgb2gray(a);
+c=im2bw(b,0.5);
+A= imsharpen(b);
 %subplot(1,3,1);imshow(a);
 %subplot(1,3,2);imshow(b);
 subplot(1,3,3);imshow(c);
@@ -53,7 +53,7 @@ B=uint8(B);
 title('IMAGE AFTER MEDIAN FILTERING');
 figure,imshow(B);
 %}
-I =imread('C:\Users\Kumar BN\Desktop\Image Processing\test.png')
+I =imread('C:\Users\Sujay\Downloads\test1.jpg')
 Iblur1 = imgaussfilt(I,2);
 Iblur2 = imgaussfilt(I,4);
 Iblur3 = imgaussfilt(I,8);
