@@ -1,5 +1,5 @@
 clear;
-A=imread('C:\Users\Sujay\Downloads\test1.jpg');
+A=imread('C:\Users\Sujay\Downloads\eczema3.jpg');
 a=rgb2gray(A);
 Z=rgb2gray(A);
 background = imopen(a,strel('disk',150));
@@ -68,7 +68,7 @@ a(a==round(Thresh))=0;
 a=uint8(a);
 figure,imshow(~a);title('Edge detected Image');
 
-cd = bwconncomp(a, 4);
+cd = bwconncomp(a, 8);
 cd.NumObjects;
 
 mask = a>100;
@@ -77,13 +77,24 @@ figure,imshow(mask);title('Mask');
 cq = bwconncomp(a, 8);
 numPixels =cellfun(@numel,cq.PixelIdxList);
 
+%Euler number of the image to find the "empitness" in the image.
+%All trial and error.
+eul = bweuler(a,8);
+lowerLimit=0;
+if(eul<1000)lowerLimit=100;
+else lowerLimit=1000;
+end
+    
+
 count =0;
 for i=1:cq.NumObjects
-    if(numPixels(i)>1000)count=count+1;
+    if(numPixels(i)>lowerLimit)count=count+1;
     end
 end
 %count contains number of components.No idea how to display it. Use command
 %prompt
+
+
 
 whatever=(bw>0.5);
 %figure,imshow(whatever);title('roi');
@@ -92,4 +103,4 @@ imageforrgb=A;
  R = imageforrgb(:,:,1);
  G = imageforrgb(:,:,2);
  B = imageforrgb(:,:,3);
- X=mean(mean(imageforrgb))
+ X=mean(mean(imageforrgb));
