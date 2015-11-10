@@ -1,5 +1,5 @@
 clear;
-A=imread('C:\Users\Sujay\Downloads\eczema3.jpg');
+A=imread('C:\Users\Sujay\Downloads\vitiligotest.jpg');
 a=rgb2gray(A);
 Z=rgb2gray(A);
 background = imopen(a,strel('disk',150));
@@ -81,7 +81,7 @@ numPixels =cellfun(@numel,cq.PixelIdxList);
 %All trial and error.
 eul = bweuler(a,8);
 lowerLimit=0;
-if(eul<1000)lowerLimit=100;
+if(eul>-1000)lowerLimit=100;
 else lowerLimit=1000;
 end
     
@@ -104,3 +104,6 @@ imageforrgb=A;
  G = imageforrgb(:,:,2);
  B = imageforrgb(:,:,3);
  X=mean(mean(imageforrgb));
+ 
+ ycbcr=rgb2ycbcr(A);
+ Y=mean(mean(ycbcr));
